@@ -1,27 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <div className="bg-gray-800 text-white">
-      <div className="container mx-auto px-4 py-2">
-        <div className="flex justify-between items-center">
-          {/* Logo o nombre de la empresa */}
-          <div className="text-xl font-bold">
-            MiEmpresa
+    <nav className="bg-orange-300 p-4 text-black relative">
+      <div className="container mx-auto">
+        <div className="flex justify-between">
+          <div>
+            <Link to="/" className="text-2xl font-bold">ZapatillasCo</Link>
           </div>
-
-          {/* Enlaces de navegación */}
-          <nav className="space-x-4 flex items-center">
-            <a href="#servicios" className="hover:text-gray-400">Servicios</a>
-            <a href="#turnos" className="hover:text-gray-400">Turnos</a>
-            <a href="#acerca-de" className="hover:text-gray-400">Acerca de</a>
-            <a href="#booking" className="hover:text-gray-400">Booking</a>
+          <div className="space-x-4">
+            <Link to="/productos" className="hover:text-orange-500">Productos</Link>
+            <Link to="/sobre-nosotros" className="hover:text-orange-500">Sobre Nosotros</Link>
+            <Link to="/contactanos" className="hover:text-orange-500">Contáctanos</Link>
+            <Link to="/otra-pagina" className="hover:text-orange-500">Otra Página</Link>
             <CartWidget />
-          </nav>
+          </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 
