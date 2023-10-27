@@ -1,24 +1,22 @@
-import { useState, useEffect } from 'react';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import firebaseApp from './firebase'; // Asegúrate de usar la ruta correcta a tu archivo firebase.js
 
-function useFetchData(url) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const fetchProducts = async () => {
+  const db = getFirestore(firebaseApp);
+  const productsRef = collection(db, 'productos'); // Cambia 'productos' al nombre de tu colección
 
-  useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [url]);
+  try {
+    const querySnapshot = await getDocs(productsRef);
+    const products = [];
+    querySnapshot.forEach((doc) => {
+      products.push({ id: doc.id, ...doc.data() });
+    });
+    return products;
+  } catch (error) {
+    console.error('Error obteniendo productos:', error);
+    return [];
+  }
+};
 
-  return { data, loading, error };
-}
+export { fetchProducts };
 
-export default useFetchData;
