@@ -49,7 +49,7 @@ const ItemListContainer = ({ type }) => {
           <p className="mb-2 flex-grow text-center"> { /* Aplica text-center para centrar el contenido horizontalmente */ }
             {product.description}
           </p>
-          <p className="mb-2 text-green-500">{product.price}</p>
+          <p className="mb-2 text-green-500">${product.price}</p>
           <img className={`mb-2 w-full object-cover ${cardHeight}`} src={product.image} alt={product.name} />
           <Link to={`/producto/${product.id}`} className="bg-orange-300 text-white text-center p-2 rounded hover:bg-orange-600 mt-2">
             Detalle
